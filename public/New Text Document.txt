@@ -1,0 +1,84 @@
+const API_URL = 'http://localhost:3000/api/items';
+
+async function fetchItems() {
+    const response = await fetch(API_URL);
+    return response.json();
+}
+
+async function addItem(item) {
+    const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(item)
+    });
+    return response.json();
+}
+
+async function updateItem(id, item) {
+    const response = await fetch(`${API_URL}/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(item)
+    });
+    return response.json();
+}
+
+async function deleteItem(id) {
+    await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+}
+
+async function renderItems() {
+    const items = await fetchItems();
+    const availableTableBody = document.querySelector('#available-items tbody');
+    const soldTableBody = document.querySelector('#sold-items tbody');
+    const depletedList = document.querySelector('#depleted-items');
+
+    availableTableBody.innerHTML = '';
+    soldTableBody.innerHTML = '';
+    depletedList.innerHTML = '';
+
+    let totalAvailableValue = 0;
+    let totalSoldValue = 0;
+
+    items.forEach(item => {
+        if (item.quantity > 0) {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.name}</td>
+                <td>${item.quantity}</td>
+                <td>$${item.price.toFixed(2)}</td>
+                <td class="actions">
+                    <button class="sold" onclick="sellItem('${item._id}')">Sell</button>
+                    <button class="delete" onclick="deleteItemHandler('${item._id}')">Delete</button>
+                </td>
+            `;
+            availableTableBody.appendChild(row);
+            totalAvailableValue += item.quantity * item.price;
+        } else {
+            const depletedItem = document.createElement('li');
+            depletedItem.textContent = `${item.name}`;
+            depletedList.appendChild(depletedItem);
+        }
+    });
+
+    // Update totals
+    document.getElementById('total-available').textContent = totalAvailableValue.toFixed(2);
+}
+
+async function sellItem(id) {
+    const items = await fetchItems();
+    const item = items.find(i => i._id === id);
+    if (item && item.quantity > 0) {
+        item.quantity--;
+        await updateItem(id, item);
+    }
+    renderItems();
+}
+
+async function deleteItemHandler(id) {
+    await deleteItem(id);
+    renderItems();
+}
+
+// Initial render
+renderItems();

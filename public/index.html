@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Inventory System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Store Inventory System</h1>
+        <div class="inventory">
+            <h2>Available Items</h2>
+            <table id="available-items">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Items will be dynamically added here -->
+                </tbody>
+            </table>
+            <div>Total Value of Available Items: $<span id="total-available">0.00</span></div>
+        </div>
+        <div class="sales">
+            <h2>Sold Items</h2>
+            <table id="sold-items">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Sold items will be dynamically added here -->
+                </tbody>
+            </table>
+            <div>Total Value of Sold Items: $<span id="total-sold">0.00</span></div>
+        </div>
+        <div class="depleted">
+            <h2>Depleted Items</h2>
+            <ul id="depleted-items">
+                <!-- Depleted items will be dynamically added here -->
+            </ul>
+        </div>
+        <div class="add-item">
+            <h2>Add New Item</h2>
+            <form id="add-item-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" required>
+                <label for="price">Price:</label>
+                <input type="number" step="0.01" id="price" name="price" required>
+                <button type="submit">Add Item</button>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

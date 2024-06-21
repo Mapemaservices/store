@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+.actions button {
+    padding: 5px 10px;
+    margin: 2px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.actions button.delete {
+    background-color: #dc3545;
+}
+
+.actions button.sold {
+    background-color: #28a745;
+}
+
+.actions button:hover {
+    opacity: 0.8;
+}
+
+#total-available, #total-sold {
+    font-weight: bold;
+}
+
+.add-item {
+    margin-top: 20px;
+}
+
+.add-item form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-item label {
+    margin-top: 10px;
+}
+
+.add-item input {
+    padding: 8px;
+    margin-top: 5px;
+}
+
+.add-item button {
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.add-item button:hover {
+    opacity: 0.8;
+}
