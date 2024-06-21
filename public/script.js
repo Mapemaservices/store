@@ -1,5 +1,5 @@
-const API_URL = 'http://localhost:3000/api/items';
-const SOLD_ITEMS_URL = 'http://localhost:3000/api/sold-items';
+const API_URL = 'https://store-rs7g.onrender.com/api/items';
+const SOLD_ITEMS_URL = 'https://store-rs7g.onrender.com/api/sold-items';
 
 async function fetchItems() {
     const response = await fetch(API_URL);
