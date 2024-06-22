@@ -1,93 +1,142 @@
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    background-color: #f4f4f4;
 }
 
 .container {
-    max-width: 800px;
+    width: 90%;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    background-color: white;
+    background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
 }
 
-h1, h2 {
+/* Header styles */
+h1 {
+    text-align: center;
     color: #333;
 }
 
+/* Section styles */
+h2 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+    color: #333;
+    margin-top: 20px;
+}
+
+/* Table styles */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
 }
 
-table, th, td {
+table th, table td {
     border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 8px;
+    padding: 10px;
     text-align: left;
 }
 
-th {
-    background-color: #f4f4f4;
+table th {
+    background-color: #f8f8f8;
 }
 
-.actions button {
-    padding: 5px 10px;
-    margin: 2px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-}
-
-.actions button.delete {
-    background-color: #dc3545;
-}
-
-.actions button.sold {
-    background-color: #28a745;
-}
-
-.actions button:hover {
-    opacity: 0.8;
-}
-
-#total-available, #total-sold {
-    font-weight: bold;
-}
-
-.add-item {
-    margin-top: 20px;
-}
-
-.add-item form {
+/* Form styles */
+form {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
-.add-item label {
-    margin-top: 10px;
+form label {
+    flex: 1 1 100%;
+    margin-bottom: 5px;
+    color: #333;
 }
 
-.add-item input {
-    padding: 8px;
-    margin-top: 5px;
-}
-
-.add-item button {
-    margin-top: 20px;
+form input, form select, form button {
+    flex: 1 1 calc(33.333% - 20px);
     padding: 10px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
-.add-item button:hover {
-    opacity: 0.8;
+form button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #218838;
+}
+
+/* List styles */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+}
+
+/* Search styles */
+#search-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    form input, form select, form button {
+        flex: 1 1 100%;
+    }
+
+    table th, table td {
+        padding: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    h1, h2 {
+        font-size: 1.5em;
+    }
+
+    form input, form select, form button {
+        padding: 5px;
+        font-size: 0.9em;
+    }
+
+    table th, table td {
+        padding: 5px;
+        font-size: 0.9em;
+    }
+
+    #search-input {
+        padding: 5px;
+        font-size: 0.9em;
+    }
 }
