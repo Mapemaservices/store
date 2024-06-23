@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config();
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 5000;
 
 // Middleware
 app.use(bodyParser.json());
@@ -56,15 +56,15 @@ app.delete("/api/items/:id", async (req, res) => {
 });
 
 app.post("/api/items/:id/sell", async (req, res) => {
-  
+  const qty = req.body.quantity;
   const item = await Item.findById(req.params.id);
   if (item && item.quantity > 0) {
-    item.quantity--;
+    item.quantity -= qty;
     await item.save();
 
     const soldItem = new SoldItem({
       name: item.name,
-      quantity: 1,
+      quantity: req.body.quantity,
       price: item.price,
       seller: req.body.seller,
       time: new Date().toLocaleString("en-US", { timeZone: "Africa/Nairobi" }),

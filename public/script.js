@@ -123,8 +123,10 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             soldItemsTable.appendChild(row);
             totalSoldValue += item.quantity * item.price;
-            console.log(item.time);
-            if (item.time.startsWith(today)) {
+            let currentdate = new Date().toLocaleString("en-US", { timeZone: "Africa/Nairobi" })
+            let soldItemDate =  (item.time).split(",")[0];
+            let currentDate = currentdate.split(",")[0];
+            if (soldItemDate === currentDate) {
                 totalDailySalesValue += item.quantity * item.price;
             }
         });
@@ -217,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const sellerName = prompt("Enter the seller's name:");
         const timeSold = new Date().toISOString();
         const paymentMode = prompt("Enter the payment mode (cash, mpesa, lipa mdogomdogo):");
-       // console.log(sellName, sellQuantity, sellPrice, sellerName, timeSold, paymentMode);
+       
         if (sellQuantity > quantity) {
             alert('Insufficient quantity.');
             return;
@@ -232,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
             time: timeSold,
             paymentMode: paymentMode
         };
-        console.log(id, soldItemData);
+        
         await sellItem(id, soldItemData);
         renderItems();
     };
