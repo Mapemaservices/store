@@ -91,11 +91,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 row.innerHTML = `
                     <td>
                         <img src="${item.picture}" alt="${item.name}" width="50">
-                        <button onclick="copyToClipboard('${item.picture}')">Copy URL</button>
                     </td>
                     <td>${item.name}</td>
                     <td>${item.quantity}</td>
-                    <td>KES ${item.price.toFixed(2)}</td>
+                    <td>${item.price.toLocaleString('en-US', {
+                        style:'currency',
+                        currency:'KES'
+                    })}</td>
                     <td>
                         <button class="sold" onclick="sellItemHandler('${item._id}', '${item.name}', ${item.quantity}, ${item.price})">Sell</button>
                         <button class="delete" onclick="deleteItemHandler('${item._id}')">Delete</button>
@@ -116,7 +118,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td><img src="${item.picture}" alt="${item.name}" width="50"></td>
                 <td>${item.name}</td>
                 <td>${item.quantity}</td>
-                <td>KES ${item.price.toFixed(2)}</td>
+                <td>${item.price.toLocaleString('en-US', {
+                    style:'currency',
+                    currency:'KES'
+                })}</td>
                 <td>${item.seller}</td>
                 <td>${item.time}</td>
                 <td>${item.paymentMode}</td>
@@ -132,9 +137,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Update totals
-        totalAvailableSpan.textContent = totalAvailableValue.toFixed(2);
-        totalSoldSpan.textContent = totalSoldValue.toFixed(2);
-        totalDailySalesSpan.textContent = totalDailySalesValue.toFixed(2);
+        // console.log(totalAvailableValue);
+        // console.log(new Intl.NumberFormat('en-US').format(totalAvailableValue.toFixed(2)));
+        
+        totalAvailableSpan.textContent = totalAvailableValue.toLocaleString('en-US', {
+            style:'currency',
+            currency:'KES'
+        });
+        totalSoldSpan.textContent = totalSoldValue.toLocaleString('en-US', {
+            style:'currency',
+            currency:'KES'
+        });
+        totalDailySalesSpan.textContent = totalDailySalesValue.toLocaleString('en-US', {
+            style:'currency',
+            currency:'KES'
+        });
     }
 
     addItemForm.addEventListener('submit', async (e) => {
@@ -145,7 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
             quantity: parseInt(e.target.quantity.value, 10),
             price: parseFloat(e.target.price.value)
         };
-
         // Remove item from depleted list if it exists there or been added to available items
         const depletedItemIndex = Array.from(depletedItemsList.getElementsByTagName('li')).findIndex(li => li.textContent === newItem.name);
         if (depletedItemIndex !== -1) {
@@ -159,7 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sellItemForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        console.log(e.target);
         const sellName = e.target['sell-name'].value;
         const sellQuantity = parseInt(e.target['sell-quantity'].value, 10);
         const sellPrice = parseFloat(e.target['sell-price'].value);
@@ -252,7 +267,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     </td>
                     <td>${item.name}</td>
                     <td>${item.quantity}</td>
-                    <td>KES ${item.price.toFixed(2)}</td>
+                    <td>${item.price.toLocaleString('en-US', {
+                        style:'currency',
+                        currency:'KES'
+                    })}</td>
                     <td><button onclick="deleteItemHandler('${item._id}')">Delete</button></td>
                 </tr>
             `;
