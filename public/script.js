@@ -22,19 +22,21 @@ document.addEventListener('DOMContentLoaded', () => {
     let dailySales = 0;
 
     const quizQuestion1 = "login as owner(enter admin password)";
-    const quizQuestion2 = "login as user(enter user password)";
+    const quizQuestion2 = "login as Sharon(enter your password)";
+    const quizQuestion3 = "login as Julius(enter your password)";
     const correctAnswer1 = "9089";
-    const correctAnswer2 = "1234";
+    const correctAnswer2 = "Sharon9089";
+    const correctAnswer3 = "9089Julius";
 
     function promptQuiz() {
-        const question = Math.random() < 0.5 ? quizQuestion1 : quizQuestion2;
+        const question = Math.random() < 0.5 ? quizQuestion1 : quizQuestion2 : quizQuestion3;
         const userAnswer = prompt(question);
 
         if (question === quizQuestion1 && userAnswer === correctAnswer1) {
             totalAvailableSpan.style.display = 'inline';
             totalSoldSpan.style.display = 'inline';
             totalDailySalesSpan.style.display = 'inline';
-        } else if (question === quizQuestion2 && userAnswer === correctAnswer2) {
+        } else if (question === quizQuestion2 && userAnswer === correctAnswer2:question === quizQuestion3 && userAnswer === correctAnswer3) {
             totalAvailableSpan.style.display = 'none';
             totalSoldSpan.style.display = 'none';
             totalDailySalesSpan.style.display = 'none';
