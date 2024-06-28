@@ -1,5 +1,5 @@
-const API_URL = 'https://store-rs7g.onrender.com/api/items';
-const SOLD_ITEMS_URL = 'https://store-rs7g.onrender.com/api/sold-items';
+const API_URL = 'https://carrycarepharmacy.onrender.com/api/items';
+const SOLD_ITEMS_URL = 'https://carrycarepharmacy.onrender.com/api/sold-items';
 
 // const API_URL = 'http://localhost:5000/api/items';
 // const SOLD_ITEMS_URL = 'http://localhost:5000/api/sold-items';
@@ -22,14 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let dailySales = 0;
 
     const quizQuestion1 = "login as owner(enter admin password)";
-    const quizQuestion2 = "login as Sharon(enter your password)";
-    ;
+    const quizQuestion2 = "login as user(enter user password)";
     const correctAnswer1 = "9089";
-    const correctAnswer2 = "Sharon9089";
-  ;
+    const correctAnswer2 = "1234";
 
     function promptQuiz() {
-        const question = Math.random() < 0.5 ? quizQuestion1 : quizQuestion2 : ;
+        const question = Math.random() < 0.5 ? quizQuestion1 : quizQuestion2;
         const userAnswer = prompt(question);
 
         if (question === quizQuestion1 && userAnswer === correctAnswer1) {
