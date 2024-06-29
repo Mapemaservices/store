@@ -14,12 +14,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalSoldSpan = document.getElementById('total-sold');
     const totalDailySalesSpan = document.getElementById('total-daily-sales');
     const searchInput = document.getElementById('search-input');
+    const cash = document.getElementById('cash');
+    const mpesa = document.getElementById('mpesa');
+    const lipaCash = document.getElementById('lipacash');
+    const lipampesa = document.getElementById('lipampesa');
+
+
 
     let availableItems = [];
     let soldItems = [];
     let totalAvailable = 0;
     let totalSold = 0;
     let dailySales = 0;
+    let cashDailySales = 0;
+    let lipamdogoDailyCashSales = 0;
+    let lipamdogoDailyMpesaSales = 0;
+    let mpesaDailySales = 0;
 
     const quizQuestion1 = "login as owner(enter admin password)";
     const quizQuestion2 = "login as user(enter user password)";
@@ -132,14 +142,24 @@ document.addEventListener('DOMContentLoaded', () => {
             let soldItemDate =  (item.time).split(",")[0];
             let currentDate = currentdate.split(",")[0];
             if (soldItemDate === currentDate) {
+                // console.log(cash.textContent);
+                // console.log(mpesa.textContent);
+    
+                if (item.paymentMode === "cash"){
+                    cashDailySales += item.quantity * item.price;
+                }else if(item.paymentMode === "mpesa"){
+                    mpesaDailySales += item.quantity * item.price;
+                }else if (item.paymentMode === "lipa mdogomdogo(cash)"){
+                    lipamdogoDailyCashSales += item.quantity * item.price;
+                }else if(item.paymentMode === "lipa mdogomdogo(mpesa)"){
+                    lipamdogoDailyMpesaSales += item.quantity * item.price;
+                }
                 totalDailySalesValue += item.quantity * item.price;
             }
         });
 
         // Update totals
-        // console.log(totalAvailableValue);
-        // console.log(new Intl.NumberFormat('en-US').format(totalAvailableValue.toFixed(2)));
-        
+
         totalAvailableSpan.textContent = totalAvailableValue.toLocaleString('en-US', {
             style:'currency',
             currency:'KES'
@@ -149,6 +169,22 @@ document.addEventListener('DOMContentLoaded', () => {
             currency:'KES'
         });
         totalDailySalesSpan.textContent = totalDailySalesValue.toLocaleString('en-US', {
+            style:'currency',
+            currency:'KES'
+        });
+        cash.textContent = cashDailySales.toLocaleString('en-US', {
+            style:'currency',
+            currency:'KES'
+        });
+        mpesa.textContent = mpesaDailySales.toLocaleString('en-US', {
+            style:'currency',
+            currency:'KES'
+        });
+        lipaCash.textContent = lipamdogoDailyCashSales.toLocaleString('en-US', {
+            style:'currency',
+            currency:'KES'
+        });
+        lipampesa.textContent = lipamdogoDailyMpesaSales.toLocaleString('en-US', {
             style:'currency',
             currency:'KES'
         });
@@ -200,7 +236,10 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             await sellItem(availableItems[itemIndex]._id, soldItemData);
-
+            console.log("cash text: ",cash.textContent);
+            console.log("mpesa text: ", mpesa.textContent);
+            console.log(cashDailySales);
+            console.log(mpesaDailySales);
             availableItems[itemIndex].quantity -= sellQuantity;
             if (availableItems[itemIndex].quantity === 0) {
                 depletedItemsList.innerHTML += `<li>${sellName}</li>`;
