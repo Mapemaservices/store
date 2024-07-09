@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 totalAvailableSpan.style.display = 'none';
                 totalSoldSpan.style.display = 'none';
-                totalDailySalesSpan.style.display = 'none';
+                totalDailySalesSpan.style.display = 'inline';
             }
             defaultSellerName = selectedQuestion.role;
         } else {
