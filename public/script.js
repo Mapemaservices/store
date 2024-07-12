@@ -1,8 +1,8 @@
-// const API_URL = 'https://store-rs7g.onrender.com/api/items';
-// const SOLD_ITEMS_URL = 'https://store-rs7g.onrender.com/api/sold-items';
+const API_URL = 'https://store-rs7g.onrender.com/api/items';
+const SOLD_ITEMS_URL = 'https://store-rs7g.onrender.com/api/sold-items';
 
-const API_URL = 'http://localhost:5000/api/items';
-const SOLD_ITEMS_URL = 'http://localhost:5000/api/sold-items';
+// const API_URL = 'http://localhost:5000/api/items';
+// const SOLD_ITEMS_URL = 'http://localhost:5000/api/sold-items';
 
 document.addEventListener('DOMContentLoaded', () => {
     //const addItemForm = document.getElementById('add-item-form');
