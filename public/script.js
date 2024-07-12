@@ -1,8 +1,11 @@
-const API_URL = 'https://store-rs7g.onrender.com/api/items';
-const SOLD_ITEMS_URL = 'https://store-rs7g.onrender.com/api/sold-items';
+// const API_URL = 'https://store-rs7g.onrender.com/api/items';
+// const SOLD_ITEMS_URL = 'https://store-rs7g.onrender.com/api/sold-items';
+
+const API_URL = 'http://localhost:5000/api/items';
+const SOLD_ITEMS_URL = 'http://localhost:5000/api/sold-items';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const addItemForm = document.getElementById('add-item-form');
+    //const addItemForm = document.getElementById('add-item-form');
     const sellItemForm = document.getElementById('sell-item-form');
     const availableItemsTable = document.getElementById('available-items').getElementsByTagName('tbody')[0];
     const soldItemsTable = document.getElementById('sold-items').getElementsByTagName('tbody')[0];
@@ -199,20 +202,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    addItemForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const formData = new FormData(addItemForm);
-        const newItem = {
-            name: formData.get('name'),
-            quantity: parseInt(formData.get('quantity')),
-            price: parseFloat(formData.get('price')),
-            picture: formData.get('picture')
-        };
+    // addItemForm.addEventListener('submit', async (e) => {
+    //     e.preventDefault();
+    //     const formData = new FormData(addItemForm);
+    //     const newItem = {
+    //         name: formData.get('name'),
+    //         quantity: parseInt(formData.get('quantity')),
+    //         price: parseFloat(formData.get('price')),
+    //         picture: formData.get('picture')
+    //     };
 
-        await addItem(newItem);
-        renderItems();
-        addItemForm.reset();
-    });
+    //     await addItem(newItem);
+    //     renderItems();
+    //     addItemForm.reset();
+    // });
 
     sellItemForm.addEventListener('submit', async (e) => {
         e.preventDefault();

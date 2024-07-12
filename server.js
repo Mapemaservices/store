@@ -4,8 +4,11 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config();
 const app = express();
+const { uploadImages, deleteImages } = require("./controllers/uploadCtrl");
+const { uploadPhoto, productImgResize } = require("./middleware/uploadImage");
 const port = process.env.PORT || 5000;
 
+const Item = require('./models/item');
 // Middleware
 app.use(bodyParser.json());
 app.use(cors());
@@ -13,12 +16,7 @@ app.use(express.static("public"));
 
 // MongoDB connection
 
-const itemSchema = new mongoose.Schema({
-  name: String,
-  quantity: Number,
-  price: Number,
-  picture:String,
-});
+
 
 const soldItemSchema = new mongoose.Schema({
   name: String,
@@ -29,7 +27,7 @@ const soldItemSchema = new mongoose.Schema({
   paymentMode: String,
 });
 
-const Item = mongoose.model("Item", itemSchema);
+
 const SoldItem = mongoose.model("SoldItem", soldItemSchema);
 
 // Routes
@@ -38,11 +36,8 @@ app.get("/api/items", async (req, res) => {
   res.json(items);
 });
 
-app.post("/api/items", async (req, res) => {
-  const newItem = new Item(req.body);
-  await newItem.save();
-  res.json(newItem);
-});
+
+app.post("/api/items", uploadPhoto.array("images", 10),productImgResize, uploadImages);
 
 app.put("/api/items/:id", async (req, res) => {
   const updatedItem = await Item.findByIdAndUpdate(req.params.id, req.body, {
