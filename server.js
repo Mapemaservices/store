@@ -25,6 +25,7 @@ const soldItemSchema = new mongoose.Schema({
   seller: String,
   time: String,
   paymentMode: String,
+  picture: String,
 });
 
 
@@ -65,6 +66,7 @@ app.post("/api/items/:id/sell", async (req, res) => {
       seller: req.body.seller,
       time: new Date().toLocaleString("en-US", { timeZone: "Africa/Nairobi" }),
       paymentMode: req.body.paymentMode,
+      picture: req.body.picture
     });
     await soldItem.save();
 
